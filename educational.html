@@ -4,52 +4,161 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Educational Quotes - Crem Quotes</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    main {
-      max-width: 900px;
-      margin: 3em auto;
-      padding: 0 1em;
+    /* Reset and body */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fc;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    header {
+      background-color: #003366;
+      padding: 1rem 2rem;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #FFD700;
+    }
+
+    /* Hero section */
+    .hero {
+      background-image: url('assets/images/bd.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 1.5px;
+    }
+    .hero-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      color: #042c55;
+      background: #FFD700;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .hero-content a:hover {
+      background: #e6c200;
+    }
+
+    /* Quotes Grid */
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
     .quote-card {
       background: white;
-      padding: 1.2em 1.5em;
-      margin-bottom: 1em;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 14px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .quote-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.15);
+    }
+
+    .quote-text {
       font-style: italic;
+      font-size: 1.15rem;
       color: #003366;
+      line-height: 1.4;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
     }
     .quote-author {
-      margin-top: 0.8em;
-      font-weight: 600;
-      color: #555;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fffdfd;
       text-align: right;
-      font-style: normal;
+      user-select: none;
     }
-    h1 {
-      text-align: center;
-      color: #003366;
-      margin-bottom: 1em;
-    }
-    .back-button {
-      display: inline-block;
-      margin: 1em 0 2em 0;
-      color: #003366;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .back-button:hover {
+
+    /* Footer */
+    footer {
+      background-color: #2d649b;
       color: #FFD700;
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <nav class="navbar">
-    <div class="logo">Crem Quotes</div>
-    <ul class="nav-links">
+  <div>Crem Quotes</div>
+  <nav>
+    <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact Us</a></li>
@@ -57,23 +166,22 @@
   </nav>
 </header>
 
-<section class="hero" style="background-image: url('assets/images/bd.jpg'); padding: 2em 0;">
-  <div class="overlay" style="background: rgba(0,0,0,0.5); padding: 1em;">
+<section class="hero" aria-label="Page header">
+  <div class="hero-content">
     <h1>Educational Quotes</h1>
-    <a href="index.html" class="back-button">← Back to Categories</a>
+    <a href="index.html" aria-label="Back to categories">← Back to Categories</a>
   </div>
 </section>
 
-<main id="quotesContainer">
-  <!-- 30 quotes will be inserted here -->
+<main id="quotesContainer" aria-live="polite" aria-atomic="true">
+  <!-- Quote cards will load here -->
 </main>
 
 <footer>
-  <p style="text-align:center; padding:1.5em; background:#003366; color:white;">&copy; 2025 Crem Quotes. All rights reserved.</p>
+  &copy; 2025 Crem Quotes. All rights reserved.
 </footer>
 
 <script>
-  // Large list of 90 quotes (can add more)
   const allQuotes = [
     { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
     { text: "The beautiful thing about learning is nobody can take it away from you.", author: "B.B. King" },
@@ -103,44 +211,16 @@
     { text: "Self-education is, I firmly believe, the only kind of education there is.", author: "Isaac Asimov" },
     { text: "Education is the foundation upon which we build our future.", author: "Christine Gregoire" },
     { text: "Formal education will make you a living; self-education will make you a fortune.", author: "Jim Rohn" },
-    { text: "Wisdom is not a product of schooling but of the lifelong attempt to acquire it.", author: "Albert Einstein" },
-    { text: "The only true wisdom is in knowing you know nothing.", author: "Socrates" },
-    { text: "Education is learning what you didn't even know you didn't know.", author: "Daniel J. Boorstin" },
-    { text: "The highest result of education is tolerance.", author: "Helen Keller" },
-    { text: "Education is the movement from darkness to light.", author: "Allan Bloom" },
-    { text: "A good education is a foundation for a better future.", author: "Elizabeth Warren" },
-    { text: "Education is a weapon whose effect depends on who holds it in his hands and at whom it is aimed.", author: "Joseph Stalin" },
-    { text: "The whole purpose of education is to turn mirrors into windows.", author: "Sydney J. Harris" },
-    { text: "Education is a tool for empowerment.", author: "Unknown" },
-    { text: "Knowledge will bring you the opportunity to make a difference.", author: "Claire Fagin" },
-    { text: "Learning is a treasure that will follow its owner everywhere.", author: "Chinese Proverb" },
-    { text: "The art of teaching is the art of assisting discovery.", author: "Mark Van Doren" },
-    { text: "Education's purpose is to replace an empty mind with an open one.", author: "Malcolm Forbes" },
-    { text: "The mind is everything. What you think you become.", author: "Buddha" },
-    { text: "Education is the best friend. An educated person is respected everywhere.", author: "Chanakya" },
-    { text: "Knowledge is power.", author: "Francis Bacon" },
-    { text: "Education is the mother of leadership.", author: "Wendell Willkie" },
-    { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
-    { text: "He who opens a school door, closes a prison.", author: "Victor Hugo" },
-    { text: "The function of education is to teach one to think intensively and to think critically.", author: "Martin Luther King Jr." },
-    { text: "Do not train a child to learn by force or harshness; but direct them to it by what amuses their minds.", author: "Plato" },
-    { text: "The direction in which education starts a man will determine his future in life.", author: "Plato" },
-    { text: "The roots of education are bitter, but the fruit is sweet.", author: "Aristotle" },
-    { text: "Education is the best provision for old age.", author: "Aristotle" },
-    { text: "The highest education is that which does not merely give us information but makes our life in harmony with all existence.", author: "Rabindranath Tagore" },
-    { text: "The aim of education is the knowledge, not of facts, but of values.", author: "William S. Burroughs" },
-    { text: "Education is a continual process, it begins at birth and ends at death.", author: "Robert M. Hutchins" }
+    { text: "Wisdom is not a product of schooling but of the lifelong attempt to acquire it.", author: "Albert Einstein" }
   ];
 
-  // Shuffle function (Fisher-Yates)
+  // Fisher-Yates shuffle
   function shuffle(array) {
     let currentIndex = array.length, randomIndex;
-
-    while (currentIndex !== 0) {
+    while(currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
     return array;
   }
@@ -148,21 +228,17 @@
   function displayQuotes() {
     const container = document.getElementById('quotesContainer');
     container.innerHTML = '';
+    const shuffled = shuffle([...allQuotes]);
+    const selected = shuffled.slice(0, 30);
 
-    // Shuffle full list to randomize
-    const shuffledQuotes = shuffle([...allQuotes]);
-
-    // Take first 30 after shuffle
-    const quotesToShow = shuffledQuotes.slice(0, 30);
-
-    quotesToShow.forEach(q => {
-      const quoteElem = document.createElement('div');
-      quoteElem.className = 'quote-card';
-      quoteElem.innerHTML = `
-        <p>"${q.text}"</p>
-        <div class="quote-author">— ${q.author}</div>
+    selected.forEach(q => {
+      const card = document.createElement('article');
+      card.className = 'quote-card';
+      card.innerHTML = `
+        <p class="quote-text">"${q.text}"</p>
+        <footer class="quote-author">— ${q.author}</footer>
       `;
-      container.appendChild(quoteElem);
+      container.appendChild(card);
     });
   }
 
