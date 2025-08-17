@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inspirational Quotes - Crem Quotes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fc;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #003366;
+      padding: 1rem 2rem;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #FFD700;
+    }
+
+    .hero {
+      background-image: url('assets/images/bd.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 1.5px;
+    }
+    .hero-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      color: #042c55;
+      background: #FFD700;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .hero-content a:hover {
+      background: #e6c200;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .quote-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .quote-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.15);
+    }
+
+    .quote-text {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #003366;
+      line-height: 1.4;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    .quote-author {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fffdfd;
+      text-align: right;
+      user-select: none;
+    }
+
+    footer {
+      background-color: #2d649b;
+      color: #FFD700;
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>Crem Quotes</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Page header">
+  <div class="hero-content">
+    <h1>Inspirational Quotes</h1>
+    <a href="index.html" aria-label="Back to categories">← Back to Categories</a>
+  </div>
+</section>
+
+<main id="quotesContainer" aria-live="polite" aria-atomic="true">
+  <!-- Quote cards will load here -->
+</main>
+
+<footer>
+  &copy; 2025 Crem Quotes. All rights reserved.
+</footer>
+
+<script>
+  const allQuotes = [
+    { text: "The best way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+    { text: "Don't let yesterday take up too much of today.", author: "Will Rogers" },
+    { text: "It's not whether you get knocked down, it's whether you get up.", author: "Vince Lombardi" },
+    { text: "If you are working on something exciting, it will keep you motivated.", author: "Unknown" },
+    { text: "Success is not in what you have, but who you are.", author: "Bo Bennett" },
+    { text: "The harder you work for something, the greater you'll feel when you achieve it.", author: "Unknown" },
+    { text: "Dream bigger. Do bigger.", author: "Unknown" },
+    { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+    { text: "Great things never come from comfort zones.", author: "Unknown" },
+    { text: "Push yourself, because no one else is going to do it for you.", author: "Unknown" },
+    { text: "Failure is not the opposite of success; it's part of success.", author: "Arianna Huffington" },
+    { text: "Success usually comes to those who are too busy to be looking for it.", author: "Henry David Thoreau" },
+    { text: "Don't be afraid to give up the good to go for the great.", author: "John D. Rockefeller" },
+    { text: "I find that the harder I work, the more luck I seem to have.", author: "Thomas Jefferson" },
+    { text: "Opportunities don't happen, you create them.", author: "Chris Grosser" },
+    { text: "Sometimes we're tested not to show our weaknesses, but to discover our strengths.", author: "Unknown" },
+    { text: "The key to success is to focus on goals, not obstacles.", author: "Unknown" },
+    { text: "Success is not how high you have climbed, but how you make a positive difference to the world.", author: "Roy T. Bennett" },
+    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+    { text: "Act as if what you do makes a difference. It does.", author: "William James" },
+    { text: "Don't limit your challenges. Challenge your limits.", author: "Unknown" },
+    { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+    { text: "Hard work beats talent when talent doesn't work hard.", author: "Tim Notke" },
+    { text: "Do something today that your future self will thank you for.", author: "Sean Patrick Flanery" },
+    { text: "Dream it. Wish it. Do it.", author: "Unknown" },
+    { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" },
+    { text: "You don't have to be great to start, but you have to start to be great.", author: "Zig Ziglar" },
+    { text: "Motivation is what gets you started. Habit is what keeps you going.", author: "Jim Ryun" },
+    { text: "Don't wait for opportunity. Create it.", author: "Unknown" },
+    { text: "Work hard in silence, let your success be your noise.", author: "Frank Ocean" }
+  ];
+
+  // Shuffle the quotes using Fisher-Yates
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+  function displayQuotes() {
+    const container = document.getElementById('quotesContainer');
+    container.innerHTML = '';
+    const shuffled = shuffle([...allQuotes]);
+    const selected = shuffled.slice(0, 30);
+
+    selected.forEach(q => {
+      const card = document.createElement('article');
+      card.className = 'quote-card';
+      card.innerHTML = `
+        <p class="quote-text">"${q.text}"</p>
+        <footer class="quote-author">— ${q.author}</footer>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  window.onload = displayQuotes;
+</script>
+
+</body>
+</html>

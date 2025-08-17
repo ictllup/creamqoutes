@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Success Quotes - Crem Quotes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fc;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth; /* smooth scrolling */
+    }
+    header {
+      background-color: #003366;
+      padding: 1rem 2rem;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #FFD700;
+    }
+    .hero {
+      background-image: url('assets/images/bd.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 1.5px;
+    }
+    .hero-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      color: #042c55;
+      background: #FFD700;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .hero-content a:hover {
+      background: #e6c200;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .quote-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .quote-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.15);
+    }
+    .quote-text {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #003366;
+      line-height: 1.4;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    .quote-author {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fffdfd;
+      text-align: right;
+      user-select: none;
+    }
+    .refresh-note {
+      text-align: center;
+      margin: 2rem 0 4rem;
+      color: #555;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .refresh-note button {
+      background: #003366;
+      color: #FFD700;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .refresh-note button:hover {
+      background-color: #e6c200;
+      color: #042c55;
+    }
+    footer {
+      background-color: #2d649b;
+      color: #FFD700;
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    /* Back to Top button styles */
+    #backToTopBtn {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 40px;
+      right: 30px;
+      z-index: 100;
+      background-color: #003366;
+      color: #FFD700;
+      border: none;
+      padding: 0.75rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+    }
+    #backToTopBtn:hover {
+      background-color: #e6c200;
+      color: #042c55;
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      #backToTopBtn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        bottom: 30px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>Crem Quotes</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Page header">
+  <div class="hero-content">
+    <h1>Success Quotes</h1>
+    <a href="index.html" aria-label="Back to categories">← Back to Categories</a>
+  </div>
+</section>
+
+<main id="quotesContainer" aria-live="polite" aria-atomic="true">
+  <!-- Quotes will appear here -->
+</main>
+
+<div class="refresh-note">
+  <p>Showing 25 quotes at a time. Refresh the page to see more motivation!</p>
+  <button onclick="location.reload()">Refresh Quotes</button>
+</div>
+
+<!-- Back to Top button -->
+<button id="backToTopBtn" aria-label="Back to top">↑ Top</button>
+
+<footer>
+  &copy; 2025 Crem Quotes. All rights reserved.
+</footer>
+
+<script>
+  const successQuotes = [
+    "Success begins outside your comfort zone.",
+    "Dream big. Start small. Don’t stop.",
+    "Your dreams don’t work unless you do.",
+    "Be the energy you want to attract.",
+    "Do it scared.",
+    "Turn your 'can'ts' into 'cans' and your dreams into plans.",
+    "Success is built on failure, frustration, and even catastrophe.",
+    "Be the type of person you want to meet.",
+    "The best project you'll ever work on is you.",
+    "Let your courage be bigger than your fear.",
+    "Don’t let perfection stop you from getting started.",
+    "The only way to do great work is to love what you do.",
+    "Don't limit yourself. You can go as far as your mind lets you.",
+    "The secret of your success is found in your daily routine.",
+    "Be stronger than your excuses.",
+    "Trust the process.",
+    "Your mindset determines your success.",
+    "If you want something you've never had, you must do something you've never done.",
+    "Be stubborn about your goals and flexible about your methods.",
+    "You are not a product of your circumstances. You are a product of your decisions.",
+    "Every accomplishment starts with the decision to try.",
+    "Success is no accident. It is hard work, perseverance, learning, and sacrifice.",
+    "Don’t let fear decide your future.",
+    "Success is falling nine times and getting up ten.",
+    "Stop wishing. Start doing.",
+    "Step by step. Day by day.",
+    "Set a goal that makes you want to jump out of bed in the morning.",
+    "You are one decision away from a totally different life.",
+    "Fall in love with the process, and the results will come.",
+    "The journey of a thousand miles begins with a single step.",
+    "Clarity equals power.",
+    "Small progress is still progress.",
+    "Don’t stop until you’re proud.",
+    "Decide. Commit. Succeed.",
+    "Train your mind to see the good in every situation.",
+    "Consistency is more important than perfection.",
+    "Be fearless in the face of adversity.",
+    "Success is found in your daily habits.",
+    "Refuse to be average.",
+    "Don't downgrade your dream just to fit your reality.",
+    "Keep going. Everything you need will come to you.",
+    "Your dreams are valid.",
+    "Do more than just exist.",
+    "Your grind will pay off.",
+    "Act as if it were impossible to fail.",
+    "Set goals. Stay quiet about them. Smash them.",
+    "Make it happen. Shock everyone.",
+    "Starve your distractions. Feed your focus.",
+    "Work until your signature becomes an autograph.",
+    "Stop waiting for the right time. Create it.",
+    "Work on you, for you.",
+    "Don’t be busy, be productive.",
+    "You are what you do, not what you say you’ll do.",
+    "Excuses don’t get results.",
+    "Everything you want is on the other side of consistency.",
+    "Success is a habit. Not a one-time event.",
+    "If not now, when?",
+    "Keep your goals big and your fears small.",
+    "The dream is free. The hustle is sold separately.",
+    "Take the first step even when you don’t see the whole path.",
+    "You are closer than you think.",
+    "Fight for your dreams.",
+    "Great things take time. Be patient.",
+    "The best way out is always through.",
+    "You are the artist of your own life.",
+    "Today’s actions are tomorrow’s results.",
+    "Don’t just go through life. Grow through life.",
+    "Win in silence. Let success make the noise.",
+    "The only thing standing between you and your goal is the story you keep telling yourself.",
+    "If you believe it will work out, you’ll see opportunities.",
+    "Create a life you can’t wait to wake up to.",
+    "Progress, not perfection.",
+    "Success tastes sweeter when you’ve overcome failure.",
+    "Be consistent even when it’s hard.",
+    "Visualize your highest self and start showing up as them.",
+    "Do it now. Sometimes later becomes never.",
+    "You’ve survived 100% of your worst days. Keep going.",
+    "Stay focused and extra sparkly.",
+    "Go after dreams, not people.",
+    "Be brave enough to be bad at something new.",
+    "Outwork your past self.",
+    "The harder you work, the luckier you get.",
+    "Trust yourself. You know more than you think you do.",
+    "Let your hustle be louder than your words.",
+    "You can do hard things.",
+    "The best investment you can make is in yourself.",
+    "You only fail when you stop trying.",
+    "Don't fear being different. Fear being the same as everyone else.",
+    "Don’t let what you can’t do interfere with what you can do.",
+    "One day or day one. You decide.",
+    "You are powerful, beautiful, brilliant, and brave.",
+    "Life rewards those who work for it.",
+    "Some people dream of success, others wake up and work for it.",
+    "Be the reason someone believes in hard work.",
+    "You can rise up from anything.",
+    "Whatever you are, be a good one.",
+    "Be proud of how far you’ve come.",
+    "Success is doing what others are not willing to do.",
+    "Stay hungry. Stay foolish.",
+    "Learn from failure. Grow from pain.",
+    "One step forward is still one step.",
+    "Your grind brings growth.",
+    "You are capable of rising above anything.",
+    "Find your fire and let it burn."
+  ];
+
+  // Fisher-Yates shuffle
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    while(currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+  function displayQuotes() {
+    const container = document.getElementById('quotesContainer');
+    container.innerHTML = '';
+    const shuffled = shuffle([...successQuotes]);
+    const selected = shuffled.slice(0, 25);
+    selected.forEach(text => {
+      const card = document.createElement('article');
+      card.className = 'quote-card';
+      // Split quote from author if any
+      const parts = text.split(/[-–—]/);
+      let quoteText = text.trim();
+      let author = '';
+      if(parts.length > 1) {
+        quoteText = parts[0].trim();
+        author = parts[1].trim();
+      }
+      card.innerHTML = `
+        <p class="quote-text">"${quoteText}"</p>
+        ${author ? `<footer class="quote-author">— ${author}</footer>` : ''}
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Back to top button logic
+  const backToTopBtn = document.getElementById('backToTopBtn');
+
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 300) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.onload = () => {
+    displayQuotes();
+    // After quotes render, scroll first quote into view (top of the list)
+    const firstQuote = document.querySelector('.quote-card');
+    if (firstQuote) {
+      firstQuote.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+</script>
+
+</body>
+</html>

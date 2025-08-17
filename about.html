@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Crem Quotes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #ffffff, #f0f4f7);
+      color: #222;
+    }
+
+    header {
+      background-color: #003366;
+      padding: 1.5rem 2rem;
+      color: #FFD700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 2.3rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #FFD700;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 4rem auto;
+      background: #fff;
+      padding: 3rem;
+      border-radius: 18px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .about-container h1 {
+      font-family: 'Playfair Display', serif;
+      color: #003366;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .about-container p {
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: #333;
+      margin-bottom: 1.8rem;
+      text-align: justify;
+    }
+
+    .highlight {
+      color: #003366;
+      font-weight: 600;
+    }
+
+    .quote-box {
+      background: #f9f9f9;
+      border-left: 6px solid #FFD700;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      font-style: italic;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      color: #444;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    footer {
+      background-color: #003366;
+      color: #FFD700;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 4rem;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .about-container {
+        padding: 2rem;
+      }
+      .about-container h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Crem Quotes</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="about-container">
+    <h1>About Me</h1>
+    <p>
+      My name is <span class="highlight">Ssali Ibrahim</span>, a proud student of <span class="highlight">Mbazzi Riverside High School</span>. I believe in the power of words to shape hearts, uplift minds, and fuel transformation.
+    </p>
+    <p>
+      I am forever grateful to <span class="highlight">Action in Africa</span>, a life-changing organization that has supported 80% of my high school education. Their impact on my journey has been beyond academics. They’ve opened doors to <strong>vocational training</strong>, introduced me to <strong>ICT skills</strong>, and empowered me with <strong>confidence</strong> that pushes me to lead and dream big.
+    </p>
+    <p>
+      This website, <strong>Crem Quotes</strong>, is a dream project—born from my love for words and a desire to help others. Whether you're looking for motivation, wisdom, healing, or joy, you'll find quotes here that speak directly to your soul. Each section of this site is crafted to inspire growth, courage, and connection.
+    </p>
+    <p>
+      My goal is simple: to spread light. Because I believe everyone deserves a spark to ignite their journey.
+    </p>
+
+    <div class="quote-box">
+      "Success is not final, failure is not fatal: It is the courage to continue that counts." — Winston Churchill
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Crem Quotes | Created by Ssali Ibrahim | Supported by Action in Africa
+  </footer>
+
+</body>
+</html>

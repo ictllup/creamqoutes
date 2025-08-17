@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emotional Quotes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap');
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+      font-family: 'Roboto', sans-serif;
+      color: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #ffecd2;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    #quote-box {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px 40px;
+      border-radius: 15px;
+      max-width: 800px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      font-size: 1.5rem;
+      line-height: 1.6;
+      font-style: italic;
+      color: #fff;
+      user-select: none;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    #new-quote-btn {
+      margin-top: 40px;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      background: #ffb347;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #3f2b96;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(255, 179, 71, 0.5);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    #new-quote-btn:hover {
+      background-color: #ffa500;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(255, 165, 0, 0.8);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #ddd;
+      font-style: normal;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      #quote-box {
+        font-size: 1.2rem;
+        padding: 25px 20px;
+        max-width: 90vw;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      #new-quote-btn {
+        width: 90vw;
+        font-size: 1rem;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Emotional Quotes</h1>
+  <div id="quote-box">Loading...</div>
+  <button id="new-quote-btn">Show Another Quote</button>
+
+  <footer>© 2025 Your Emotional Quotes Collection</footer>
+
+  <script>
+    const emotionalQuotes = [
+      "Sometimes the heart sees what is invisible to the eye.",
+      "Tears come from the heart and not from the brain.",
+      "The emotion that can break your heart is sometimes the very one that heals it.",
+      "It’s okay to feel lost, broken, and afraid. That means you’re human.",
+      "You never realize how strong you are until being strong is your only choice.",
+      "The soul always knows what to do to heal itself. The challenge is to silence the mind.",
+      "Sometimes, the hardest part isn’t letting go but learning to start over.",
+      "Your emotions are the slaves to your thoughts, and you are the slave to your emotions.",
+      "Pain is inevitable. Suffering is optional.",
+      "To weep is to make less the depth of grief.",
+      "Emotions are like waves. Watch them disappear and return.",
+      "Every heart has a pain. Only the way of expressing it is different.",
+      "Feelings are much like waves, we can't stop them from coming but we can choose which one to surf.",
+      "Sometimes the hardest battle is fighting with your own feelings.",
+      "It’s not the load that breaks you down; it’s the way you carry it.",
+      "Behind every strong person is a story that gave them no choice.",
+      "Sadness flies away on the wings of time.",
+      "What hurts us is what heals us.",
+      "The most painful goodbyes are the ones that are never said and left unexplained.",
+      "Even the strongest hearts can feel deep sorrow.",
+      "Vulnerability sounds like truth and feels like courage.",
+      "Let your tears water the seeds of your future happiness.",
+      "Some of the most comforting words in the universe are ‘Me too.’",
+      "There is a sacredness in tears. They are not the mark of weakness, but of power.",
+      "Sometimes, you need to step outside, get some air, and remind yourself who you are and where you want to be.",
+      "Your emotions are valid. Give yourself permission to feel.",
+      "Healing doesn’t mean the damage never existed. It means the damage no longer controls your life.",
+      "The wound is the place where the light enters you.",
+      "It’s okay to cry. It’s okay to be sad. It’s okay to feel lost.",
+      "The soul would have no rainbow if the eyes had no tears.",
+      "Sometimes we need to be hurt in order to grow.",
+      "Feel deeply, love fiercely, and live fearlessly.",
+      "Sometimes the only way to get better is to accept how broken you feel.",
+      "Your emotions are your compass, guiding you through your life.",
+      "There is no greater agony than bearing an untold story inside you.",
+      "When the heart grieves over what it has lost, the spirit rejoices over what it has left.",
+      "In the depth of winter, I finally learned that within me there lay an invincible summer.",
+      "It’s through our darkest moments that we discover our true strength.",
+      "Feelings are just visitors, let them come and go.",
+      "Sometimes the strongest people are the ones who cry behind closed doors.",
+      "Healing is a journey, not a destination.",
+      "Don’t be ashamed to cry. It’s just another way your heart speaks.",
+      "Sometimes, what we feel is too big for words.",
+      "Sadness is but a wall between two gardens.",
+      "In every life, a little rain must fall.",
+      "To love and be loved is to feel the sun from both sides.",
+      "The greatest healing therapy is friendship and love.",
+      "No matter how much it hurts now, someday you will look back and realize your struggles changed your life for the better.",
+      "Sometimes you have to get knocked down lower than you have ever been to stand back up taller than you ever were.",
+      "Your feelings are your own, but your reactions are your choice.",
+      "Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor.",
+      "The greatest gift you can give yourself is to forgive your own heart.",
+      "Embrace the glorious mess that you are.",
+      "Some wounds heal better with time than words.",
+      "The heart was made to be broken, but it was also made to heal.",
+      "Even the deepest wounds can heal with time and love.",
+      "You don’t have to control your emotions. You just have to stop letting them control you.",
+      "Sometimes, being strong means letting yourself feel everything.",
+      "The pain you feel today will be the strength you feel tomorrow.",
+      "It’s okay to be a glowstick: sometimes we need to break before we shine.",
+      "When emotions overwhelm, breathe deeply and be gentle with yourself.",
+      "Embrace your emotions, they are the language of your soul.",
+      "Happiness can be found even in the darkest of times if one only remembers to turn on the light.",
+      "Sometimes the bravest thing you can do is keep going despite how you feel.",
+      "Your heart is a garden. Your thoughts are the seeds. You can grow flowers or weeds.",
+      "The way sadness works is one of the strange riddles of the world.",
+      "Sometimes the soul needs a little sadness to remind it how to dance in the light.",
+      "There is beauty in the broken and power in the pain.",
+      "Even the darkest night will end and the sun will rise.",
+      "Crying is how your heart speaks when your lips can’t explain the pain you feel.",
+      "You are stronger than you think, and more loved than you know.",
+      "Sometimes healing comes in waves and sometimes it comes in moments.",
+      "It’s okay not to be okay. Just don’t give up on yourself.",
+      "Your emotions don’t define you; your actions do.",
+      "The bravest thing you can do is keep moving forward even when your heart is heavy.",
+      "Let yourself feel, for in feeling, you find the path to healing.",
+      "Embrace the emotions that make you human.",
+      "When you can’t find the sunshine, be the sunshine.",
+      "Healing starts when you decide to be kind to yourself.",
+      "The strongest hearts have the most scars.",
+      "You can’t pour from an empty cup. Take care of your emotional health.",
+      "Feelings are meant to be felt, not buried.",
+      "Sometimes silence speaks louder than words.",
+      "You have the power to heal your heart and grow from the pain.",
+      "Let your emotions be the music that guides your healing.",
+      "Be gentle with yourself. You’re doing the best you can.",
+      "The most beautiful souls are often the most broken.",
+      "Sometimes you have to cry a river to feel the ocean of peace.",
+      "Your vulnerability is your greatest strength.",
+      "Sometimes, the most courageous thing is to show up and let yourself be seen.",
+      "No storm lasts forever; the sun will shine again.",
+      "You don’t have to fight your feelings; acknowledge them and let them flow.",
+      "Healing is messy but necessary.",
+      "Feel deeply, live fully.",
+      "You are not alone in your feelings. Others understand and care.",
+      "Sometimes we must fall apart to come back stronger.",
+      "Let your emotions be the bridge to your inner peace.",
+      "In pain, there is purpose. In tears, there is cleansing.",
+      "Sometimes the heart needs time to heal itself.",
+      "Your feelings are the key to your soul’s wisdom.",
+      "Grief is love with no place to go.",
+      "Trust your feelings, but don’t let them control your decisions.",
+      "There is hope beyond the hurt.",
+      "Your heart is brave even when it hurts.",
+      "Pain is temporary, but your strength is forever.",
+      "Healing begins when you accept your feelings without judgment.",
+      "You are allowed to feel all the things.",
+      "Sometimes healing looks like rest, not action.",
+      "Feel your emotions; they are the doorways to healing.",
+      "The emotion that can break your heart is sometimes the very one that heals it."
+    ];
+
+    const quoteBox = document.getElementById('quote-box');
+    const btn = document.getElementById('new-quote-btn');
+
+    function showRandomQuote() {
+      const randomIndex = Math.floor(Math.random() * emotionalQuotes.length);
+      quoteBox.textContent = `"${emotionalQuotes[randomIndex]}"`;
+    }
+
+    // Show a quote immediately on page load
+    showRandomQuote();
+
+    btn.addEventListener('click', showRandomQuote);
+  </script>
+</body>
+</html>

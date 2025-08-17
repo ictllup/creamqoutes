@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Motivational Quotes - Crem Quotes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f7fc;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #003366;
+      padding: 1rem 2rem;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #FFD700;
+    }
+    .hero {
+      background-image: url('assets/images/bd.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 90%;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: 1.5px;
+    }
+    .hero-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      color: #042c55;
+      background: #FFD700;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .hero-content a:hover {
+      background: #e6c200;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 1000px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    /* Quote card styling */
+    .quote-card {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff, #f9f9f9);
+      border-radius: 14px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      padding: 2rem 2.5rem 2.5rem;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #003366;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      animation: fadeInUp 0.7s forwards;
+      cursor: default;
+      user-select: text;
+    }
+    /* Star decoration */
+    .quote-card::before {
+      content: "★";
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      color: #FFD700;
+      opacity: 0.7;
+      user-select: none;
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Quote text */
+    .quote-text {
+      font-style: normal;
+      line-height: 1.5;
+    }
+    /* Highlight important words */
+    .quote-text strong {
+      color: #FFD700;
+    }
+    /* Author styling */
+    .quote-author {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #666;
+      text-align: right;
+      margin-top: 1rem;
+      user-select: none;
+    }
+    /* Quote progress */
+    .quote-progress {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #999;
+      margin-top: 0.8rem;
+      text-align: left;
+      user-select: none;
+    }
+    /* Refresh section */
+    .refresh-note {
+      text-align: center;
+      margin: 2rem 0 2rem;
+      color: #555;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .refresh-note button {
+      background: #003366;
+      color: #FFD700;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .refresh-note button:hover {
+      background-color: #e6c200;
+      color: #042c55;
+    }
+    /* Back to top button */
+    #backToTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #003366;
+      color: #FFD700;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 9999;
+    }
+    #backToTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    footer {
+      background-color: #2d649b;
+      color: #FFD700;
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>Crem Quotes</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" aria-label="Page header">
+  <div class="hero-content">
+    <h1>Motivational Quotes</h1>
+    <a href="index.html" aria-label="Back to categories">← Back to Categories</a>
+  </div>
+</section>
+
+<main id="quotesContainer" aria-live="polite" aria-atomic="true">
+  <!-- Quotes will appear here -->
+</main>
+
+<div class="refresh-note">
+  <p>Showing 25 quotes at a time. Refresh the page to see new motivation!</p>
+  <button onclick="location.reload()">Refresh Quotes</button>
+</div>
+
+<button id="backToTopBtn" aria-label="Back to top">↑ Top</button>
+
+<footer>
+  &copy; 2025 Crem Quotes. All rights reserved.
+</footer>
+
+<script>
+const successQuotes = [
+  "Push yourself, because no one else is going to do it for you.",
+  "The harder you work for something, the greater you'll feel when you achieve it.",
+  "Don't watch the clock; do what it does. Keep going.",
+  "Success doesn’t come from what you do occasionally. It comes from what you do consistently.",
+  "Great things never come from comfort zones.",
+  "Dream it. Wish it. Do it.",
+  "Sometimes later becomes never. Do it now.",
+  "Little things make big days.",
+  "Don’t stop when you’re tired. Stop when you’re done.",
+  "It’s going to be hard, but hard does not mean impossible.",
+  "Wake up with determination. Go to bed with satisfaction.",
+  "The key to success is to focus on goals, not obstacles.",
+  "Believe you can and you’re halfway there.",
+  "Start where you are. Use what you have. Do what you can.",
+  "Stay positive, work hard, make it happen.",
+  "You are capable of amazing things.",
+  "The secret to getting ahead is getting started.",
+  "Keep your face always toward the sunshine—and shadows will fall behind you.",
+  "Opportunities don’t happen, you create them.",
+  "The only limit to our realization of tomorrow is our doubts of today.",
+  "Action is the foundational key to all success.",
+  "Your limitation—it's only your imagination.",
+  "Push past your comfort zone to grow.",
+  "Make each day your masterpiece.",
+  "Be stronger than your strongest excuse.",
+  "Don’t wish for it, work for it.",
+  "Success is what happens after you survive your mistakes.",
+  "Discipline is the bridge between goals and accomplishment.",
+  "Hard work beats talent when talent doesn't work hard.",
+  "Big journeys begin with small steps.",
+  "Chase your dreams, not people.",
+  "Work hard in silence, let your success be your noise.",
+  "Success doesn’t just find you. You have to go out and get it.",
+  "Don’t be afraid to give up the good to go for the great.",
+  "The harder you fall, the higher you bounce.",
+  "Success is walking from failure to failure with no loss of enthusiasm.",
+  "If it doesn’t challenge you, it won’t change you.",
+  "Stop doubting yourself, work hard, and make it happen.",
+  "Success starts with self-discipline.",
+  "Strive for progress, not perfection.",
+  "The expert in anything was once a beginner.",
+  "Believe in your infinite potential.",
+  "You don't have to be great to start, but you have to start to be great.",
+  "Don’t limit your challenges. Challenge your limits.",
+  "Success is the sum of small efforts repeated day in and day out.",
+  "Be so good they can’t ignore you.",
+  "Success is not for the lazy.",
+  "Every day is a second chance.",
+  "Do something today that your future self will thank you for.",
+  "You are your only limit.",
+  "Great minds discuss ideas; average minds discuss events; small minds discuss people.",
+  "Everything you’ve ever wanted is on the other side of fear.",
+  "Take the risk or lose the chance.",
+  "Nothing will work unless you do.",
+  "You miss 100% of the shots you don’t take.",
+  "Start today. Not tomorrow.",
+  "Don’t count the days, make the days count.",
+  "Success is a journey, not a destination.",
+  "You were born to be real, not perfect.",
+  "Be fearless in the pursuit of what sets your soul on fire.",
+  "Your only limit is you.",
+  "The secret of getting ahead is getting started.",
+  "You are stronger than you think.",
+  "Work until your idols become your rivals.",
+  "The distance between dreams and reality is called action.",
+  "The dream is free, but the hustle is sold separately.",
+  "If you’re tired of starting over, stop giving up.",
+  "Success requires replacement of laziness with hard work.",
+  "Turn your wounds into wisdom.",
+  "Where focus goes, energy flows.",
+  "You don’t find willpower, you create it.",
+  "Life begins at the end of your comfort zone.",
+  "Work hard, stay humble.",
+  "Motivation gets you going, but discipline keeps you growing.",
+  "Do what you have to do until you can do what you want to do.",
+  "You don't need to see the whole staircase, just take the first step.",
+  "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+  "It does not matter how slowly you go as long as you do not stop.",
+  "Fall seven times, stand up eight.",
+  "The pain you feel today will be the strength you feel tomorrow.",
+  "A goal without a plan is just a wish.",
+  "Don’t let yesterday take up too much of today.",
+  "Success means doing the best we can with what we have.",
+  "Be a voice, not an echo.",
+  "Energy and persistence conquer all things.",
+  "Do it with passion or not at all.",
+  "Make your life a masterpiece; imagine no limitations.",
+  "Live your dreams.",
+  "Failure is not the opposite of success; it’s part of success.",
+  "Be bold enough to use your voice, brave enough to listen to your heart.",
+  "The best way to predict the future is to create it.",
+  "Go the extra mile. It’s never crowded.",
+  "You’ve got what it takes, but it will take everything you’ve got.",
+  "Think big. Start small. Act now.",
+  "Don’t let small minds convince you that your dreams are too big.",
+  "Everything you can imagine is real.",
+  "Stay humble, hustle hard.",
+  "Never stop learning, because life never stops teaching.",
+  "You didn’t come this far to only come this far.",
+  "Prove them wrong.",
+  "The comeback is always stronger than the setback.",
+  "Success is earned. Not given.",
+  "Don’t fear failure. Fear being in the exact same place next year.",
+  "Success begins outside your comfort zone.",
+  "Dream big. Start small. Don’t stop.",
+  "Your dreams don’t work unless you do.",
+  "Be the energy you want to attract.",
+  "Do it scared.",
+  "Turn your 'can'ts' into 'cans' and your dreams into plans.",
+  "Success is built on failure, frustration, and even catastrophe.",
+  "Be the type of person you want to meet.",
+  "The best project you'll ever work on is you.",
+  "Let your courage be bigger than your fear.",
+  "Don’t let perfection stop you from getting started.",
+  "The only way to do great work is to love what you do.",
+  "Don't limit yourself. You can go as far as your mind lets you.",
+  "The secret of your success is found in your daily routine.",
+  "Be stronger than your excuses.",
+  "Trust the process.",
+  "Your mindset determines your success.",
+  "If you want something you've never had, you must do something you've never done.",
+  "Be stubborn about your goals and flexible about your methods.",
+  "You are not a product of your circumstances. You are a product of your decisions.",
+  "Every accomplishment starts with the decision to try.",
+  "Success is no accident. It is hard work, perseverance, learning, and sacrifice.",
+  "Don’t let fear decide your future.",
+  "Success is falling nine times and getting up ten.",
+  "Stop wishing. Start doing.",
+  "Step by step. Day by day.",
+  "Set a goal that makes you want to jump out of bed in the morning.",
+  "You are one decision away from a totally different life.",
+  "Fall in love with the process, and the results will come.",
+  "The journey of a thousand miles begins with a single step.",
+  "Clarity equals power.",
+  "Small progress is still progress.",
+  "Don’t stop until you’re proud.",
+  "Decide. Commit. Succeed.",
+  "Train your mind to see the good in every situation.",
+  "Consistency is more important than perfection.",
+  "Be fearless in the face of adversity.",
+  "Success is found in your daily habits.",
+  "Refuse to be average.",
+  "Don't downgrade your dream just to fit your reality.",
+  "Keep going. Everything you need will come to you.",
+  "Your dreams are valid.",
+  "Do more than just exist.",
+  "Your grind will pay off.",
+  "Act as if it were impossible to fail.",
+  "Set goals. Stay quiet about them. Smash them.",
+  "Make it happen. Shock everyone.",
+  "Starve your distractions. Feed your focus.",
+  "Work until your signature becomes an autograph.",
+  "Stop waiting for the right time. Create it.",
+  "Work on you, for you.",
+  "Don’t be busy, be productive.",
+  "You are what you do, not what you say you’ll do.",
+  "Excuses don’t get results.",
+  "Everything you want is on the other side of consistency.",
+  "Success is a habit. Not a one-time event.",
+  "If not now, when?",
+  "Keep your goals big and your fears small.",
+  "The dream is free. The hustle is sold separately.",
+  "Take the first step even when you don’t see the whole path.",
+  "You are closer than you think.",
+  "Fight for your dreams.",
+  "Great things take time. Be patient.",
+  "The best way out is always through.",
+  "You are the artist of your own life.",
+  "Today’s actions are tomorrow’s results.",
+  "Don’t just go through life. Grow through life.",
+  "Win in silence. Let success make the noise.",
+  "The only thing standing between you and your goal is the story you keep telling yourself.",
+  "If you believe it will work out, you’ll see opportunities.",
+  "Create a life you can’t wait to wake up to.",
+  "Progress, not perfection.",
+  "Success tastes sweeter when you’ve overcome failure.",
+  "Be consistent even when it’s hard.",
+  "Visualize your highest self and start showing up as them.",
+  "Do it now. Sometimes later becomes never.",
+  "You’ve survived 100% of your worst days. Keep going.",
+  "Stay focused and extra sparkly.",
+  "Go after dreams, not people.",
+  "Be brave enough to be bad at something new.",
+  "Outwork your past self.",
+  "The harder you work, the luckier you get.",
+  "Trust yourself. You know more than you think you do.",
+  "Let your hustle be louder than your words.",
+  "You can do hard things.",
+  "The best investment you can make is in yourself.",
+  "You only fail when you stop trying.",
+  "Don't fear being different. Fear being the same as everyone else.",
+  "Don’t let what you can’t do interfere with what you can do.",
+  "One day or day one. You decide.",
+  "You are powerful, beautiful, brilliant, and brave.",
+  "Life rewards those who work for it.",
+  "Some people dream of success, others wake up and work for it.",
+  "Be the reason someone believes in hard work.",
+  "You can rise up from anything.",
+  "Whatever you are, be a good one.",
+  "Be proud of how far you’ve come.",
+  "Success is doing what others are not willing to do.",
+  "Stay hungry. Stay foolish.",
+  "Learn from failure. Grow from pain.",
+  "One step forward is still one step.",
+  "Your grind brings growth.",
+  "You are capable of rising above anything.",
+  "Find your fire and let it burn.",
+  "Don’t stop until you’re proud.",
+  "Push through the pain.",
+  "Success is earned, not given.",
+  "Make your passion your paycheck.",
+  "Keep going, keep growing.",
+  "Success is not for the lazy.",
+  "Your limitation—it’s only your imagination.",
+  "Dream bigger than your fears.",
+  "Work hard. Stay humble.",
+  "Be a warrior, not a worrier.",
+  "The comeback is always stronger than the setback.",
+  "Chase goals, not people.",
+  "Stop doubting yourself, work hard, and make it happen.",
+  "Success doesn’t come to you—you go to it.",
+  "Be better than you were yesterday.",
+  "One day at a time.",
+  "Your future is created by what you do today, not tomorrow.",
+  "Don’t quit. Suffer now and live the rest of your life as a champion.",
+  "Success is the sum of small efforts repeated day in and day out.",
+  "Be willing to be uncomfortable.",
+  "Work while they sleep. Learn while they party.",
+  "Turn dreams into plans, and plans into reality.",
+  "Your only limit is your mind.",
+  "The harder the battle, the sweeter the victory.",
+  "Keep your eyes on the stars, and your feet on the ground.",
+  "Great things never come from comfort zones.",
+  "Be obsessed with improvement.",
+  "Failure is the condiment that gives success its flavor.",
+  "Motivation is what gets you started. Habit is what keeps you going.",
+  "Make failure your teacher.",
+  "Success requires self-discipline.",
+  "Fall seven times, stand up eight.",
+  "Every champion was once a contender who refused to give up.",
+  "Small daily improvements lead to stunning results.",
+  "Don’t let fear decide your fate.",
+  "Turn your setbacks into comebacks.",
+  "Dreams don’t work unless you do.",
+  "Do it with passion or not at all.",
+  "Go the extra mile. It’s never crowded.",
+  "Never let your fear decide your future.",
+  "Success is a mindset.",
+  "You are stronger than any excuse.",
+  "The secret to success is consistency of purpose.",
+  "Be patient, work hard, and trust the journey.",
+  "Don’t watch the clock; do what it does. Keep going.",
+  "Success doesn’t come from what you do occasionally, it comes from what you do consistently.",
+  "Your hustle will determine your success.",
+  "The best way to predict the future is to create it.",
+  "Discipline is the bridge between goals and accomplishment.",
+  "Good things come to those who hustle.",
+  "Success is not for the faint-hearted.",
+  "Push yourself because no one else is going to do it for you.",
+  "Make each day your masterpiece.",
+  "Stay humble, hustle hard.",
+  "Act like a lady, think like a boss.",
+  "Success starts with self-belief.",
+  "You don’t have to be great to start, but you have to start to be great.",
+  "The pain you feel today will be the strength you feel tomorrow.",
+  "Success is doing what you love and getting paid for it.",
+  "Work hard in silence, let success be your noise.",
+  "Create a life you can’t wait to wake up to.",
+  "The only limit to your impact is your imagination and commitment.",
+  "Turn your dreams into goals.",
+  "Don’t stop when you’re tired; stop when you’re done.",
+  "Success is the best revenge.",
+  "Stay focused and never give up.",
+  "Be fearless in the pursuit of what sets your soul on fire.",
+  "Work hard, dream big.",
+  "Make it happen. Shock everyone.",
+  "Push past your comfort zone to grow.",
+  "Great things take time.",
+  "Be so good they can’t ignore you.",
+  "Success is earned one day at a time.",
+  "Focus on progress, not perfection.",
+  "Work hard, stay positive, and get up early.",
+  "Your grind will pay off.",
+  "The secret to getting ahead is getting started.",
+  "Keep going no matter what.",
+  "You are capable of amazing things.",
+  "Don’t wait for opportunity. Create it.",
+  "Discipline equals freedom.",
+  "Wake up with determination. Go to bed with satisfaction.",
+  "Be the energy you want to attract.",
+  "Every accomplishment starts with the decision to try.",
+  "Success doesn’t come from luck. It comes from hard work.",
+  "Motivation gets you started; habit keeps you going.",
+  "Don’t limit your challenges. Challenge your limits.",
+  "Believe you can and you’re halfway there.",
+  "Success is not about being the best. It’s about always getting better.",
+  "Be patient with yourself. Growth takes time.",
+  "Small steps every day.",
+  "Work hard, stay focused, and never give up.",
+  "Success is what happens after you survive your mistakes.",
+  "Make failure your stepping stone.",
+  "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+  "Chase your dreams relentlessly."
+];
+
+  // Fisher-Yates shuffle
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    while(currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+  function displayQuotes() {
+    const container = document.getElementById('quotesContainer');
+    container.innerHTML = '';
+    const shuffled = shuffle([...successQuotes]);
+    const selected = shuffled.slice(0, 25);
+    const highlightWords = ['Success', 'Dream', 'Work', 'Believe', 'Goal', 'Power', 'Courage', 'Fear', 'Focus', 'Hard', 'Grow', 'Hustle', 'Fearless', 'Rise', 'Strong'];
+    selected.forEach((text, index) => {
+      const card = document.createElement('article');
+      card.className = 'quote-card';
+
+      // Split quote from author if any
+      const parts = text.split(/[-–—]/);
+      let quoteText = text.trim();
+      let author = '';
+      if(parts.length > 1) {
+        quoteText = parts[0].trim();
+        author = parts[1].trim();
+      }
+
+      // Highlight important words
+      const escapedQuote = quoteText.replace(
+        new RegExp(`\\b(${highlightWords.join('|')})\\b`, 'gi'),
+        '<strong>$1</strong>'
+      );
+
+      card.innerHTML = `
+        <p class="quote-text">"${escapedQuote}"</p>
+        ${author ? `<footer class="quote-author">— ${author}</footer>` : ''}
+        <div class="quote-progress">Quote ${index + 1} of 25</div>
+      `;
+
+      container.appendChild(card);
+
+      // Stagger animation delay
+      card.style.animationDelay = `${index * 0.08}s`;
+    });
+
+    // Scroll to top after refreshing quotes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.onload = displayQuotes;
+
+  // Back to Top button logic
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
